@@ -275,7 +275,7 @@ Docs oficiais:
 
 Se quiser evoluir o projeto:
 
--;Trocar encoding/json por: 👉 jsoniter
+- Trocar encoding/json por: 👉 jsoniter
 - Adicionar:
   * rate limiting
   * retry logic
