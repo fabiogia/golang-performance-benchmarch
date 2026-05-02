@@ -224,3 +224,70 @@ func main() {
 }
 ```
 
+📊 7. Benchmark
+
+```Go
+package benchmark
+
+import (
+    "testing"
+
+    "go-performance-api/internal/cache"
+    "go-performance-api/internal/service"
+)
+
+func BenchmarkProcess(b *testing.B) {
+    cache := cache.NewCache()
+    service := service.NewOrderService(cache)
+
+    for i := 0; i < b.N; i++ {
+        service.Process(i, float64(i))
+    }
+}
+```
+
+Rodar:
+
+```Bash
+go test -bench=. -benchmem
+```
+
+🔬 8. Profiling (ESSENCIAL pra senioridade)
+
+CPU:
+
+```Bash
+go test -bench=. -cpuprofile=cpu.out
+go tool pprof cpu.out
+```
+
+Memória:
+
+```Bash
+go test -bench=. -memprofile=mem.out
+```
+
+Docs oficiais:
+👉 https://go.dev/blog/pprof⁠�
+👉 https://go.dev/doc/⁠�
+
+🔥 Melhorias (nível sênior mesmo)
+
+Se quiser evoluir o projeto:
+
+-;Trocar encoding/json por: 👉 jsoniter
+- Adicionar:
+  * rate limiting
+  * retry logic
+  * circuit breaker
+  * métricas com Prometheus
+  * load test com k6
+
+💼 Como usar isso no portfólio
+
+No README coloque:
+
+- comparação antes/depois de otimizações
+- benchmark results
+-;screenshots do pprof
+- explicação das decisões
